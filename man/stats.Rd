@@ -1,5 +1,9 @@
 \name{Stats}
 \alias{tdStats}
+\alias{applyStats}
+\alias{pvObs}
+\alias{pvModels}
+
 \encoding{UTF-8}
 
 \title{
@@ -19,6 +23,15 @@ tdStats(m, o,
                        "nmae", "cvmae",
                        "nrmse", "cvrmse",
                        "r2", "tStone"))
+
+applyStats(models, o,
+           functions = c("mo", "mm",
+                         "sdo", "sdm",
+                         "mbe", "mae", "rmse",
+                         "nmbe", "cvmbe",
+                         "nmae", "cvmae",
+                         "nrmse", "cvrmse",
+                         "r2", "tStone"))
 
 }
 \arguments{
@@ -56,8 +69,7 @@ Oscar Perpiñán Lamigueiro
 }
 
 \examples{
-data(pvModels)
-data(pvObs)
+data(modelEx)
 
 ## Analyze one model
 tdStats(pvModels$M01, pvObs)

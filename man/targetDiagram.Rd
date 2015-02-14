@@ -28,7 +28,7 @@ targetDiagram(data, class = "",
 tdTheme(pch = 21:25,
         col.points = 'black',
         fill = brewer.pal(n= 8, 'Dark2'),
-        cex = 1.2,
+        cex = 1.1,
         ...)
 }
 \arguments{
@@ -45,6 +45,8 @@ tdTheme(pch = 21:25,
 
   \item{cuts}{Numeric, defines the radius of the RMSE circles. If \code{type = 'quantile'} it defines the probabilities with values between 0 and 1, and the radius are such that the circles are the corresponding quantile. If \code{type = 'at'} \code{cuts} defines the radius of the circles.}
 
+  \item{par.settings}{Definition of graphical parameters using \code{\link{simpleTheme}} or its wrapper \code{tdTheme}}
+  
   \item{pch, col.points, fill, cex}{Arguments for \code{\link{simpleTheme}}}
   
   \item{\dots}{Additional arguments for \code{\link{xyplot}}}
@@ -78,8 +80,7 @@ Oscar Perpiñán Lamigueiro
 }
 
 \examples{
-data(pvModels)
-data(pvObs)
+data(modelEx)
 
 ## Compute statistics
 errModel <- applyStats(pvModels, pvObs)
