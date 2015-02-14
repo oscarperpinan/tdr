@@ -1,5 +1,9 @@
 import(lattice)
 
+importFrom(RColorBrewer,
+           brewer.pal)
+
 export('targetDiagram',
-       'tdStats'
+       'tdStats',
+       'tdTheme'
        )

@@ -7,6 +7,7 @@ targetDiagram <- function(data, class = '',
                           default.scales = list(cex = 0.6),
                           scales = list(),
                           type = 'quantile', cuts = seq(0.25, 1, .25),
+                          par.settings = tdTheme(),
                           ...){
     
     ## Dismiss values of normalized RMSE above 1
@@ -43,6 +44,7 @@ targetDiagram <- function(data, class = '',
            xlim = extendrange(circle$x),
            ylim = extendrange(circle$y, f = 0.1),
            auto.key = auto.key,
+           par.settings = par.settings,
            panel = function(..., circle){
                ## Vertical and Horizontal Axis
                panel.abline(h=0,v=0, lwd = 0.6, col='gray')

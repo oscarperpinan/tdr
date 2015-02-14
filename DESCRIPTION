@@ -8,5 +8,6 @@ Description: Target diagram implementation
 URL: http://github.com/oscarperpinan/tdr
 BugReports: https://github.com/oscarperpinan/tdr/issues
 License: GPL-2
-Depends: lattice
+Depends: lattice,
+Imports: RColorBrewer
 Suggests: latticeExtra
