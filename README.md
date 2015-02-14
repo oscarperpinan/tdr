@@ -1,2 +1,0 @@
-# tdr
-Target Diagrams

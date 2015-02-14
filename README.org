@@ -1,0 +1,2 @@
+* Target Diagrams
+R implementation of Target Diagrams proposed in Jolliff, J.; Kindle, J. C.; Shulman, I.; Penta, B.; Friedrichs, M. A. M.; Helber, R. & Arnone, R. A. Summary diagrams for coupled   hydrodynamic-ecosystem model skill assessment Journal of Marine Systems, 2009, 76, 64-82.
