@@ -72,4 +72,11 @@ Oscar Perpiñán Lamigueiro
 }
 
 \examples{
+data(pvModels)
+data(pvObs)
+
+## Compute statistics
+errModel <- applyStats(pvModels, pvObs)
+## Display results
+targetDiagram(errModel, groups = model)
 }

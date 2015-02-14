@@ -40,3 +40,24 @@ tdStats <- function(m, o,
                  FUN=function(f) do.call(f, list(m, o)))
     as.data.frame(t(ss))
 }
+
+
+applyStats <- function(models, o,
+                       functions = c('mo', 'mm', 'sdo', 'sdm',
+                           'mbe', 'mae', 'rmse',
+                           'nmbe', 'cvmbe',
+                           'nmae', 'cvmae',
+                           'nrmse', 'cvrmse',
+                           'r2','tStone')){
+    nModels <- ncol(models) 
+    nms <- names(models)
+    
+    errModel <- lapply(seq_len(nModels),
+                       FUN = function(i){
+                           err <- tdStats(models[,i], o)
+                           err$model <- nms[i]
+                           err
+                       })
+    
+    do.call(rbind, errModel)
+}

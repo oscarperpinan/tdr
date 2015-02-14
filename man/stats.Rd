@@ -22,9 +22,11 @@ tdStats(m, o,
 
 }
 \arguments{
-  \item{m}{Numeric, model values}
+  \item{m}{Numeric, vector, model values}
 
-  \item{o}{Numeric, observation values}
+  \item{models}{Numeric, matrix, model values}
+
+  \item{o}{Numeric, vector, observation values}
 
   \item{functions}{Character, name of functions to compute model
     errors. The package includes definitions for these functions:
@@ -42,7 +44,7 @@ tdStats(m, o,
 }
 
 \value{
-A numeric with length equal to the number of functions.
+A \code{data.frame} with a column for each function, and a row for each model.
 }
 
 \author{
@@ -54,4 +56,12 @@ Oscar Perpiñán Lamigueiro
 }
 
 \examples{
+data(pvModels)
+data(pvObs)
+
+## Analyze one model
+tdStats(pvModels$M01, pvObs)
+
+## Analyze a set of models
+applyStats(pvModels, pvObs)
 }
