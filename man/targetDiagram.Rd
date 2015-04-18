@@ -1,5 +1,6 @@
-\name{targetDiagram}
+\name{TargetDiagram}
 \alias{targetDiagram}
+\alias{target_diagram}
 \alias{tdTheme}
 
 \encoding{UTF-8}
@@ -9,7 +10,7 @@ Target Diagrams
 }
 
 \description{
-Target diagrams
+Target diagrams with lattice, \code{targetDiagram}, and ggplot2, \code{target_diagram}.
 }
 
 \usage{
@@ -24,6 +25,12 @@ targetDiagram(data, class = "",
               cuts = seq(0.25, 1, 0.25),
               par.settings = tdTheme(),
               ...)
+
+target_diagram(data,
+               xlab = expression("RMSEc"\%.\%"sign("*sigma^"*"*")"),
+               ylab = 'MBE', 
+               type = 'quantile', cuts = seq(0.25, 1, .25),
+               ...)
 
 tdTheme(pch = 21:25,
         col.points = 'black',
@@ -49,7 +56,7 @@ tdTheme(pch = 21:25,
   
   \item{pch, col.points, fill, cex}{Arguments for \code{\link{simpleTheme}}}
   
-  \item{\dots}{Additional arguments for \code{\link{xyplot}}}
+  \item{\dots}{Additional arguments for \code{\link{xyplot}} or \code{\link{ggplot}}}
 
 }
 
@@ -58,11 +65,15 @@ The Target Diagram is derived from the relation between the unbiased RMSE, MBE, 
 
 The resulting diagram provides three different measures: whether the model overestimates or underestimates (positive or negative values of the MBE on the y-axis, respectively), whether the model standard deviation is larger or smaller than the standard deviation of the measurements (positive or negative values on the x-axis, respectively), and the error performance as quantified by the RMSE represented as the distance to the coordinates origin. This tool is particularly powerful when comparing competing models.
 
-\code{tdDiagram} uses \code{tdTheme} to define the graphical settings, which is just a wrapper around \code{simpleTheme}.
+\code{targetDiagram} is built around the \code{lattice} package, while
+\code{target_diagram} is the \code{ggplot2} version.
+
+\code{targetDiagram} uses \code{tdTheme} to define the graphical settings, which is just a wrapper around \code{simpleTheme}.
 }
 
 \value{
-A trellis object.
+  \code{targetDiagram} produces a trellis object.
+  \code{target_diagram} produces a ggplot object.
 }
 
 \references{
@@ -75,6 +86,7 @@ Oscar Perpiñán Lamigueiro
 
 \seealso{
   \code{\link{xyplot}},
+  \code{\link{ggplot}},
   \code{\link{simpleTheme}},
   \code{\link{tdStats}}
 }
@@ -84,16 +96,30 @@ data(modelEx)
 
 ## Compute statistics
 errModel <- applyStats(pvModels, pvObs)
+
 ## Display results
 ## Default settings use type = 'quantile'
 targetDiagram(errModel, groups = model)
+
+target_diagram(errModel, fill = 'model')
+
 ## whose breaks can be defined with 'cuts'
 targetDiagram(errModel, groups = model,
               type = 'quantile',
               cuts = seq(0, 1, .1))
+
+target_diagram(errModel, fill = 'model',
+              type = 'quantile',
+              cuts = seq(0, 1, .1))
+
 ## Alternatively, with type = 'at'
 ## one can define manually the breaks
 targetDiagram(errModel, groups = model,
               type = 'at',
               cuts = seq(0, .1, .02))
+
+target_diagram(errModel, fill = 'model',
+              type = 'at',
+              cuts = seq(0, .1, .02))
+
 }

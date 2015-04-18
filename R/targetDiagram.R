@@ -10,32 +10,18 @@ targetDiagram <- function(data, class = '',
                           par.settings = tdTheme(),
                           ...){
     
-    ## Dismiss values of normalized RMSE above 1
-    data <- data[data$nrmse <= 1,]
+    data <- prepareData(data)
+    circle <- makeCircles(data, type, cuts)
+    radius <- unique(circle$r)
 
-    ## RMSEc and difSD according to Joliff et al.
-    data$nrmsec <- with(data, sqrt(nrmse^2 - nmbe^2))
-    data$difSD <- with(data, sdm - sdo)
-
-    ## Quantile Circles
-    radius <- switch(type,
-                     quantile = {
-                             quantile(data$nrmse, probs = cuts, na.rm = TRUE)
-                     },
-                     at = cuts)
-
-    circle <- expand.grid(theta = seq(0, 2*pi,length = 100),
-                          r = radius)
-    circle$x <- with(circle, r * sin(theta))
-    circle$y <- with(circle, r * cos(theta))
-
-    ## Generate graphic
+    ## Make formula
     ff <- as.formula(paste('nmbe ~ nrmsec * sign(difSD)',
                            ifelse(class == '', '', paste('|', class))
                            )
                      )
+    ## Configure axis
     scales <- modifyList(default.scales, scales)
-    
+    ## Generate graphic
     xyplot(ff, 
            data = data,
            circle = circle,

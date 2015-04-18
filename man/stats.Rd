@@ -65,7 +65,8 @@ Oscar Perpiñán Lamigueiro
 }
 
 \seealso{
-  \code{\link{targetDiagram}}
+  \code{\link{targetDiagram}},
+  \code{\link{target_diagram}}
 }
 
 \examples{
