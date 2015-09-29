@@ -36,9 +36,11 @@ tdStats <- function(m, o,
     
     r2 <- function(m, o) cor(m, o)^2
     
-    ss <- sapply(functions,
+    ss <- lapply(functions,
                  FUN=function(f) do.call(f, list(m, o)))
-    as.data.frame(t(ss))
+    ss <- do.call(c, ss)
+    names(ss) <- functions
+    ss
 }
 
 
