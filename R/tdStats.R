@@ -52,14 +52,14 @@ applyStats <- function(models, o,
                            'nrmse', 'cvrmse',
                            'r2','tStone')){
     nModels <- ncol(models) 
-    nms <- names(models)
     
     errModel <- lapply(seq_len(nModels),
                        FUN = function(i){
                            err <- tdStats(models[,i], o)
-                           err$model <- nms[i]
-                           err
                        })
-    
-    do.call(rbind, errModel)
+
+    errModel <- do.call(rbind, errModel)
+    errModel <- as.data.frame(errModel)
+    errModel$model <- names(models)
+    errModel    
 }
